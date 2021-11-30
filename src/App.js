@@ -8,10 +8,12 @@ const App = () => {
   const AppKey = "1c83f9971e2e618fcb3f6e45d56e737c";
 
   const [resipes, setRecipe] = useState([]);
+  const [serch,setSerch]=useState('');
+  const [query,setQuery]=useState('chicken');
 
   useEffect(() => {
     getRecipies();
-  }, []);
+  }, [query]);
 
   const getRecipies = async () => {
     const response = await fetch(`https://api.edamam.com/search?q=chicken&app_id=${AppId}&app_key=${AppKey}`);
@@ -19,10 +21,19 @@ const App = () => {
     setRecipe(data.hits);
   }
 
+  const updateSerch = e=>{
+    setSerch(e.target.value);
+  }
+
+  const getSerch = e =>{
+    e.preventDefault();
+    setQuery(serch);
+  }
+
   return (
     <div className="App">
-      <form className="serch">
-        <input className="serchInput"></input>
+      <form className="serch" onSubmit={getSerch}>
+        <input className="serchInput" value={serch} onChange={updateSerch}></input>
         <button className="serchButton" type="submit">Serch</button>
       </form>
       {resipes.map(resipe => (
