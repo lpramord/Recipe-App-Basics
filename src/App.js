@@ -22,7 +22,7 @@ const App = () => {
   return (
     <div className="App">
       <form className="serch">
-        <input className="serchImput"></input>
+        <input className="serchInput"></input>
         <button className="serchButton" type="submit">Serch</button>
       </form>
       {resipes.map(resipe => (
