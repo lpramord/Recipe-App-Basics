@@ -1,4 +1,5 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import Recipe from './repcipeTemplate';
 import './App.css';
 
 const App = () => {
@@ -6,11 +7,11 @@ const App = () => {
   const AppId = "04c465cc";
   const AppKey = "1c83f9971e2e618fcb3f6e45d56e737c";
 
-  const [resipe,setRecipe] = useState([]);
+  const [resipes, setRecipe] = useState([]);
 
-  useEffect( ()=>{
+  useEffect(() => {
     getRecipies();
-  },[]);
+  }, []);
 
   const getRecipies = async () => {
     const response = await fetch(`https://api.edamam.com/search?q=chicken&app_id=${AppId}&app_key=${AppKey}`);
@@ -24,6 +25,9 @@ const App = () => {
         <input className="serchImput"></input>
         <button className="serchButton" type="submit">Serch</button>
       </form>
+      {resipes.map(resipe => (
+        <Recipe key={resipe.recipe.label} tittle={resipe.recipe.label} calaries={resipe.recipe.calories} image={resipe.recipe.image} ingredients={resipe.recipe.ingredientLines} />
+      ))}
     </div>
   )
 
