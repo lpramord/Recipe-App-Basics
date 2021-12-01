@@ -20,6 +20,8 @@
   padding: 10px;
   border: none;
   margin: 20px;
+  background-color: rgb(176, 80, 255);
+  color: white;
 }
 .recipes{
   display: flex;
