@@ -8,8 +8,8 @@ const App = () => {
   const AppKey = "1c83f9971e2e618fcb3f6e45d56e737c";
 
   const [resipes, setRecipe] = useState([]);
-  const [serch,setSerch]=useState('');
-  const [query,setQuery]=useState('chicken');
+  const [serch, setSerch] = useState('');
+  const [query, setQuery] = useState('chicken');
 
   useEffect(() => {
     getRecipies();
@@ -21,11 +21,11 @@ const App = () => {
     setRecipe(data.hits);
   }
 
-  const updateSerch = e=>{
+  const updateSerch = e => {
     setSerch(e.target.value);
   }
 
-  const getSerch = e =>{
+  const getSerch = e => {
     e.preventDefault();
     setQuery(serch);
   }
@@ -36,9 +36,11 @@ const App = () => {
         <input className="serchInput" value={serch} onChange={updateSerch}></input>
         <button className="serchButton" type="submit">Serch</button>
       </form>
-      {resipes.map(resipe => (
-        <Recipe key={resipe.recipe.label} tittle={resipe.recipe.label} calaries={resipe.recipe.calories} image={resipe.recipe.image} ingredients={resipe.recipe.ingredientLines} />
-      ))}
+      <div class="recipes">
+        {resipes.map(resipe => (
+          <Recipe key={resipe.recipe.label} tittle={resipe.recipe.label} calaries={resipe.recipe.calories} image={resipe.recipe.image} ingredients={resipe.recipe.ingredientLines} />
+        ))}
+      </div>
     </div>
   )
 
